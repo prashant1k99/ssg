@@ -1,0 +1,2 @@
+title = "Demo site"
+theme = "psc"       # it should match the sub directory inside theme
