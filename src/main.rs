@@ -17,6 +17,7 @@ struct Args {
 enum Command {
     Init { name: String },
     CreateTheme { name: String },
+    Build,
 }
 
 fn main() -> Result<()> {
@@ -25,5 +26,6 @@ fn main() -> Result<()> {
     match args.command {
         Command::Init { name } => init::invoke(&name),
         Command::CreateTheme { name } => create_theme::invoke(&name),
+        Command::Build => todo!(),
     }
 }
