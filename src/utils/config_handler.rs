@@ -17,16 +17,6 @@ fn default_out_dir() -> String {
     "dist".to_string()
 }
 
-impl Default for AppConfig {
-    fn default() -> Self {
-        Self {
-            title: String::new(),
-            theme: String::new(),
-            out_dir: default_out_dir(),
-        }
-    }
-}
-
 pub(crate) fn create_config(app_name: &str, config: AppConfig) -> Result<()> {
     let toml_config = toml::to_string(&config)?;
     let file_path = PathBuf::from(format!("{}/{}", app_name, "config.toml"));
