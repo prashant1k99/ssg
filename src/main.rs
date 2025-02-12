@@ -4,6 +4,7 @@ use clap::{Parser, Subcommand};
 use commands::init;
 
 mod commands;
+mod utils;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
