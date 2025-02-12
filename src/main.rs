@@ -2,6 +2,7 @@ use anyhow::Result;
 
 use clap::{Parser, Subcommand};
 use commands::{create_theme, init};
+use utils::config_handler;
 
 mod commands;
 mod utils;
@@ -18,6 +19,7 @@ enum Command {
     Init { name: String },
     CreateTheme { name: String },
     Build,
+    Test,
 }
 
 fn main() -> Result<()> {
@@ -27,5 +29,10 @@ fn main() -> Result<()> {
         Command::Init { name } => init::invoke(&name),
         Command::CreateTheme { name } => create_theme::invoke(&name),
         Command::Build => todo!(),
+        Command::Test => {
+            let cofnig = config_handler::read_config()?;
+            println!("Config: {:?}", cofnig);
+            Ok(())
+        }
     }
 }

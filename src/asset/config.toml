@@ -1,3 +1,3 @@
 title = "Demo site"
 theme = "psc"       # it should match the sub directory inside theme
-output = "dist"
+out_dir = "dist"

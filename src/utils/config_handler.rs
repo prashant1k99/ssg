@@ -9,7 +9,22 @@ use serde::{Deserialize, Serialize};
 pub struct AppConfig {
     pub title: String,
     pub theme: String,
+    #[serde(default = "default_out_dir")] // Optional with default
     pub out_dir: String,
+}
+
+fn default_out_dir() -> String {
+    "dist".to_string()
+}
+
+impl Default for AppConfig {
+    fn default() -> Self {
+        Self {
+            title: String::new(),
+            theme: String::new(),
+            out_dir: default_out_dir(),
+        }
+    }
 }
 
 pub(crate) fn create_config(app_name: &str, config: AppConfig) -> Result<()> {
@@ -31,7 +46,11 @@ pub(crate) fn read_config() -> Result<AppConfig> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
 
-    let config: AppConfig = toml::from_str(&contents)?;
-
-    Ok(config)
+    toml::from_str(&contents).map_err(|e| {
+        if e.to_string().contains("missing field") {
+            anyhow::anyhow!("Configuration error = {}", e.message())
+        } else {
+            anyhow::anyhow!("Invalid configuration format: {}", e)
+        }
+    })
 }
