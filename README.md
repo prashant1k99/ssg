@@ -4,8 +4,8 @@ This is the practice project for building a static site based on [Coding Challen
 
 ### Steps:
 
-- [ ] Initialize project using CLI
-- [ ] Create theme using CLI ( Create theme folder and basic file structure )
+- [x] Initialize project using CLI
+- [x] Create theme using CLI ( Create theme folder and basic file structure )
 - [ ] Manage theme and content based on the structure
 - [ ] Generate template and render the content
 - [ ] Try implementing Live Reload in dev mode

@@ -1,7 +1,7 @@
 use anyhow::Result;
 
 use clap::{Parser, Subcommand};
-use commands::init;
+use commands::{create_theme, init};
 
 mod commands;
 mod utils;
@@ -16,6 +16,7 @@ struct Args {
 #[derive(Debug, Subcommand)]
 enum Command {
     Init { name: String },
+    CreateTheme { name: String },
 }
 
 fn main() -> Result<()> {
@@ -23,5 +24,6 @@ fn main() -> Result<()> {
 
     match args.command {
         Command::Init { name } => init::invoke(&name),
+        Command::CreateTheme { name } => create_theme::invoke(&name),
     }
 }

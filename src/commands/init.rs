@@ -26,7 +26,10 @@ pub(crate) fn invoke(name: &str) -> Result<()> {
     create_content(name).context("Unable to create cotnent")?;
 
     let theme_name = "psc";
-    create_theme(name, theme_name).context("unable to create default theme")?;
+    let theme_path = PathBuf::from(format!("{}/{}/{}", name, "theme", theme_name));
+
+    create_theme(theme_path).context("unable to create default theme")?;
+
     create_config(
         name,
         AppConfig {
