@@ -30,8 +30,8 @@ fn main() -> Result<()> {
         Command::CreateTheme { name } => create_theme::invoke(&name),
         Command::Build => todo!(),
         Command::Test => {
-            let cofnig = config_handler::read_config()?;
-            println!("Config: {:?}", cofnig);
+            let config = config_handler::read_config()?;
+            println!("Config: {:?}", config);
             Ok(())
         }
     }

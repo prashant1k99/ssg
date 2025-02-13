@@ -4,6 +4,7 @@ use anyhow::{bail, Context, Result};
 
 use crate::utils::create_theme;
 
+#[allow(dead_code)]
 pub(crate) fn invoke(name: &str) -> Result<()> {
     // Check if the config.toml exist in the current dir
     let file_eixsts = Path::new("config.toml");

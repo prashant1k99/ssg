@@ -1,9 +1,11 @@
+use std::collections::HashMap;
 use std::io::{Read, Write};
 use std::path::Path;
 use std::{fs, path::PathBuf};
 
 use anyhow::{bail, Result};
 use serde::{Deserialize, Serialize};
+use toml::Value;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct AppConfig {
@@ -11,10 +13,18 @@ pub struct AppConfig {
     pub theme: String,
     #[serde(default = "default_out_dir")] // Optional with default
     pub out_dir: String,
+    #[serde(default = "default_asset_dir")]
+    pub asset_dir: String,
+    #[serde(flatten)]
+    pub extra: HashMap<String, Value>,
 }
 
 fn default_out_dir() -> String {
     "dist".to_string()
+}
+
+fn default_asset_dir() -> String {
+    "asset".to_string()
 }
 
 pub(crate) fn create_config(app_name: &str, config: AppConfig) -> Result<()> {

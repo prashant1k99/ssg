@@ -1,4 +1,4 @@
-use std::{fs, path::PathBuf};
+use std::{collections::HashMap, fs, path::PathBuf};
 
 use anyhow::{Context, Result};
 
@@ -22,6 +22,7 @@ fn create_content(name: &str) -> Result<()> {
     Ok(())
 }
 
+#[allow(dead_code)]
 pub(crate) fn invoke(name: &str) -> Result<()> {
     create_content(name).context("Unable to create cotnent")?;
 
@@ -36,6 +37,8 @@ pub(crate) fn invoke(name: &str) -> Result<()> {
             title: name.to_string(),
             out_dir: String::from("dist"),
             theme: theme_name.to_string(),
+            asset_dir: String::from("asset"),
+            extra: HashMap::new(),
         },
     )
     .context("Unable to create config file")?;
