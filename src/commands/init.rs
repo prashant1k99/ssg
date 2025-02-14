@@ -31,6 +31,8 @@ pub(crate) fn invoke(name: &str) -> Result<()> {
 
     create_theme(theme_path).context("unable to create default theme")?;
 
+    fs::create_dir_all(format!("{}/{}", name, "asset")).context("Failed to create asset dir")?;
+
     create_config(
         name,
         AppConfig {

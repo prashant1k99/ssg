@@ -32,10 +32,17 @@ pub(crate) fn invoke() -> Result<()> {
     let theme_dir_exists = Path::new("theme");
     let content_dir_exists = Path::new("content");
     if !config_file_exists.try_exists()?
-        && !theme_dir_exists.try_exists()?
-        && !content_dir_exists.try_exists()?
+        || !theme_dir_exists.try_exists()?
+        || !content_dir_exists.try_exists()?
     {
-        bail!("SSG not initialized");
+        if config_file_exists.try_exists()?
+            || theme_dir_exists.try_exists()?
+            || content_dir_exists.try_exists()?
+        {
+            bail!("Invalid SSG configurations")
+        } else {
+            bail!("SSG not initialized");
+        }
     }
     // Check for theme folder
     // Check for content folder
@@ -56,5 +63,6 @@ pub(crate) fn invoke() -> Result<()> {
     // Render the index.html with the static data from config.toml
     // Render contents file based on the template from theme/{theme-name}/{cotent-type}/index.html
     // and/or template.html
+    println!("Build completed successfully");
     Ok(())
 }

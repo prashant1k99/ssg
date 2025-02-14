@@ -54,3 +54,12 @@ pub(crate) fn read_config() -> Result<AppConfig> {
         }
     })
 }
+
+pub(crate) fn update_config(config: AppConfig) -> Result<()> {
+    let toml_config = toml::to_string(&config)?;
+    let file_path = PathBuf::from("config.toml");
+    let mut file = fs::File::create(file_path)?;
+
+    file.write_all(toml_config.as_bytes())?;
+    Ok(())
+}
