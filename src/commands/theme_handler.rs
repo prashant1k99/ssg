@@ -34,7 +34,7 @@ pub(crate) fn set_theme(name: &str) -> Result<()> {
     }
     // Then update the config.toml for theme
     let mut config = read_config().context("Failed to read config.toml")?;
-    config.theme = name.to_string();
+    config.settings.theme = name.to_string();
     update_config(config).context("Failed to update config.toml for theme")?;
 
     println!("Successfully updated theme");

@@ -3,7 +3,7 @@ use std::{collections::HashMap, fs, path::PathBuf};
 use anyhow::{Context, Result};
 
 use crate::utils::{
-    config_handler::{create_config, AppConfig},
+    config_handler::{create_config, AppConfig, Settings},
     create_theme::create_theme,
 };
 
@@ -36,11 +36,13 @@ pub(crate) fn invoke(name: &str) -> Result<()> {
     create_config(
         name,
         AppConfig {
-            title: name.to_string(),
-            out_dir: String::from("dist"),
-            theme: theme_name.to_string(),
-            asset_dir: String::from("asset"),
-            extra: HashMap::new(),
+            settings: Settings {
+                title: name.to_string(),
+                out_dir: String::from("dist"),
+                theme: theme_name.to_string(),
+                asset_dir: String::from("asset"),
+            },
+            custom: HashMap::new(),
         },
     )
     .context("Unable to create config file")?;

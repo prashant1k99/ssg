@@ -8,15 +8,20 @@ use serde::{Deserialize, Serialize};
 use toml::Value;
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct AppConfig {
+pub struct Settings {
     pub title: String,
     pub theme: String,
     #[serde(default = "default_out_dir")] // Optional with default
     pub out_dir: String,
     #[serde(default = "default_asset_dir")]
     pub asset_dir: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct AppConfig {
+    pub settings: Settings,
     #[serde(flatten)]
-    pub extra: HashMap<String, Value>,
+    pub custom: HashMap<String, Value>,
 }
 
 fn default_out_dir() -> String {

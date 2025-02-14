@@ -3,3 +3,11 @@ title = "Demo site"
 theme = "psc"       # it should match the sub directory inside theme
 out_dir = "dist"
 asset_dir = "asset" # for storing static asset such as CSS and JS
+
+[extra]
+title = "hello"
+description = "This is a test description"
+
+[theme]
+primary = "#00000"
+secondary = "#fffff"

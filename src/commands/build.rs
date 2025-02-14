@@ -50,13 +50,18 @@ pub(crate) fn invoke() -> Result<()> {
     let config = read_config()?;
     // Prepare a dist folder
 
-    fs::create_dir_all(&config.out_dir)
-        .context(format!("Unable to create {} folder", &config.out_dir))?;
+    fs::create_dir_all(&config.settings.out_dir).context(format!(
+        "Unable to create {} folder",
+        &config.settings.out_dir
+    ))?;
     // Copy the static folder to the dist folder
-    let asset_dir_exists = &Path::new(&config.asset_dir);
+    let asset_dir_exists = &Path::new(&config.settings.asset_dir);
     if asset_dir_exists.try_exists()? {
         // Create folder for asset in dist
-        let dst_asset_path = &PathBuf::from(format!("{}/{}", config.out_dir, config.asset_dir));
+        let dst_asset_path = &PathBuf::from(format!(
+            "{}/{}",
+            config.settings.out_dir, config.settings.asset_dir
+        ));
         copy_dir(asset_dir_exists, dst_asset_path)
             .context("Error while copying the assets to destination")?;
     }
