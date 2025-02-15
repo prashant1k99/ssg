@@ -8,5 +8,4 @@ anyhow = "1.0.95"
 clap = { version = "4.5.28", features = ["derive"] }
 serde = { version = "1.0.217", features = ["derive"] }
 tera = "1.20.0"
-tokio = { version = "1.43.0", features = ["full"] }
 toml = "0.8.20"
