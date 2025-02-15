@@ -1,15 +1,6 @@
 ### Layout:
 
-For templates
-
-- for content/{contnet-type}/{title}.md
-
----
-
-- Template: theme/{theme-name}/{contnet-type}.html -> Is used for rendering the content -> it should generate the slug = https://example.com/{contnet-type}/{title}
-  NOTE: This should not create the listing page for content-type
-
---- OR ---
-
-- Template: theme/{theme-name}/{contnet-type}/index.html -> Used for listing of the page -> It should generate the slug = https://example.com/{contnet-type}
-- Template: theme/{theme-name}/{contnet-type}/template.html -> Used for specific content rendering, it should generate the slug = https://example.com/{contnet-type}/{title}
+theme/{theme-name}/index.html -rendered with config.toml -> index.html
+theme/{theme-name}/{data}.html - rendered with config.toml -> /{data}.html
+theme/{theme-name}/{contnet-type}/index.html - rendered with config.toml -> /{cotent-type}.html
+theme/{theme-name}/{content-type}/template.html - rendered with content/{content-type}/{title}.md -> /{content-type}/{title}.html
