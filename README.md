@@ -80,12 +80,10 @@ The `config.toml` file is used to configure the SSG project. Here is an example 
 
 ```toml
 [settings]
-site_title = "My Static Site"
-site_description = "A static site built with SSG"
+title = "My Static Site"
 theme = "default"
 out_dir = "dist"
 asset_dir = "static"
-current_year = 2025
 
 [custom]
 # Add any custom settings here
