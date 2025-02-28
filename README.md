@@ -97,6 +97,7 @@ To create a custom theme, follow the steps outlined in the [Theme Building Guide
 
 ## Future Enhancements
 
+- [ ] Write test cases to cover all the features
 - [ ] Parallel processing of the build
 - [ ] Improved CI/CD scripts using GitHub Actions
 - [ ] Incremental builds (only build changed or new files)
