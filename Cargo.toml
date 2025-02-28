@@ -6,6 +6,8 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.95"
 clap = { version = "4.5.28", features = ["derive"] }
+gray_matter = "0.2.8"
+pulldown-cmark = "0.13.0"
 serde = { version = "1.0.217", features = ["derive"] }
 tera = "1.20.0"
 toml = "0.8.20"
