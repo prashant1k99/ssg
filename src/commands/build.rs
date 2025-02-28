@@ -221,7 +221,7 @@ fn render_content_type_files(
     Ok(())
 }
 
-/// Entry point to invoke the build process.
+#[allow(dead_code)]
 pub(crate) fn invoke() -> Result<()> {
     let config_file_exists = Path::new("config.toml");
     let theme_dir_exists = Path::new("theme");
