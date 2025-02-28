@@ -58,12 +58,18 @@ Alternatively, you can build the project from source if you have Rust installed 
 
 To generate a static site, follow these steps:
 
-1. Place your Markdown files in the `content` directory.
+1. Init the project:
+
+```sh
+ssg init <name>
+```
+
 2. Update the `config.toml` file with your site settings.
-3. Run the build command:
+3. Create content in `contens/` folder.
+4. Run the build command:
 
    ```sh
-   cargo run --release
+   ssg build
    ```
 
 The generated site will be placed in the `dist` directory.

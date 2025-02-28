@@ -22,6 +22,12 @@ This documentation provides a comprehensive guide for users to create and use cu
 
 ## Theme Structure
 
+You can create a basic theme scaffold by following the structure outlined below using the command:
+
+```sh
+ssg create-theme my-theme
+```
+
 A theme in the SSG project is a directory that contains HTML templates and other assets (such as CSS, JavaScript, and images). The theme directory should be placed inside the `theme` directory of the project.
 
 Here is an example structure of a theme named `my-theme`:
@@ -42,8 +48,8 @@ ssg/
 
 To create a functional theme, you need to include the following required files in your theme directory:
 
-1. **index.html**: The main template file for the home page of the site.
-2. **template.html**: The template file used for rendering Markdown content.
+1. **index.html**: The main template file for the home page of the Content Type.
+2. **template.html**: The template file used for rendering Markdown content for the respective Content Type.
 
 ### index.html
 
@@ -139,12 +145,10 @@ Example `config.toml`:
 
 ```toml
 [settings]
-site_title = "My Static Site"
-site_description = "A static site built with SSG"
+title = "My Static Site"
 theme = "my-theme"
 out_dir = "dist"
 asset_dir = "static"
-current_year = 2025
 
 [custom]
 # Add any custom settings here
