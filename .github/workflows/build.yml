@@ -2,14 +2,14 @@ name: Build and Release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,14 +44,27 @@ jobs:
       - name: Run tests
         run: cargo test
 
+      - name: Extract version from Cargo.toml
+        id: cargo_version
+        run: |
+          version=$(grep '^version =' Cargo.toml | sed -E 's/version = "(.*)"/\1/')
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      - name: Create Git Tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag v${{ env.VERSION }}
+          git push origin v${{ env.VERSION }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
           draft: false
           prerelease: false
 
